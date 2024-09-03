@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: 'mongo:latest'
+    image: mongo:latest
     container_name: mongo-order
     environment:
       MONGO_INITDB_DATABASE: order
@@ -8,3 +8,29 @@ services:
 #      MONGO_INITDB_ROOT_PASSWORD: pass
     ports:
       - '27017:27017'
+  localstack:
+    image: localstack/localstack:latest
+    container_name: "localstack"
+    environment:
+      - PORT_WEB_UI=8080
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LOCALSTACK_HOSTNAME=localstack
+      - DEFAULT_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=123
+      - AWS_SECRET_ACCESS_KEY=xyz
+      - LOCALSTACK_AUTH_TOKEN=admin
+      - AWS_DEFAULT_OUTPUT=json
+      - EDGE_PORT=4566
+      - SERVICES=s3,sqs
+      - EXTRA_CORS_ALLOWED_ORIGINS=app://.
+      - DISABLE_CORS_CHECKS=1
+    ports:
+      - "4566-4583:4566-4583"
+    labels:
+      org.springframework.boot.readiness-check.tcp.disable: false
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./development.sh:/etc/localstack/init/ready.d/init-aws.sh"
