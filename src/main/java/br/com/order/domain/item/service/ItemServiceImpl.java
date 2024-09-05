@@ -2,6 +2,7 @@ package br.com.order.domain.item.service;
 
 import br.com.order.api.item.representation.ItemRequest;
 import br.com.order.api.item.representation.ItemResponse;
+import br.com.order.domain.item.exception.ItemNotFoundException;
 import br.com.order.domain.item.model.Item;
 import br.com.order.domain.item.repository.ItemRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
                 item.setDescription(itemRequest.getDescription());
                 item.setAmountInCents(itemRequest.getAmountInCents());
                 return mapper.convertValue(repository.save(item), ItemResponse.class);
-            }).orElseThrow(RuntimeException::new);
+            }).orElseThrow(ItemNotFoundException::new);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemResponse find(final String itemId) {
         return repository.findById(itemId)
             .map(item -> mapper.convertValue(item, ItemResponse.class))
-            .orElseThrow(RuntimeException::new);
+            .orElseThrow(ItemNotFoundException::new);
     }
 
     @Override
