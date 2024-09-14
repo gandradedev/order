@@ -15,6 +15,8 @@ echo "Create S3 bucket example"
 echo "aws --endpoint-url=http://localhost:4566 s3 mb s3://my-bucket-name"
 echo "##########"
 
+aws --endpoint-url=http://localhost:4566 s3 mb s3://bucket-order
+
 echo "##########"
 echo "List S3 buckets"
 echo "aws --endpoint-url http://localhost:4566 s3 ls"
