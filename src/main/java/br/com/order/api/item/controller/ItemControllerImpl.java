@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class ItemControllerImpl implements ItemController {
 
     @Override
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ItemResponse> create(final ItemRequest item) {
+    public ResponseEntity<ItemResponse> create(final ItemRequest item) throws IOException {
         log.info("Received request to create item with ItemRequest {}", item);
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(service.create(item));

@@ -12,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.io.IOException;
+
 public interface ItemController {
 
-    ResponseEntity<ItemResponse> create(@ModelAttribute @Valid ItemRequest item);
+    ResponseEntity<ItemResponse> create(@ModelAttribute @Valid ItemRequest item) throws IOException;
 
     ResponseEntity<ItemResponse> update(@PathVariable String itemId, @ModelAttribute @Valid ItemRequest item);
 
