@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.net.URL;
 import java.time.Instant;
 
 @Data
@@ -25,7 +26,9 @@ public class Item {
 
     private long amountInCents;
 
-    private String image;
+    private URL imageUrl;
+
+    private String imageS3Key;
 
     @CreatedDate
     private Instant createdAt;

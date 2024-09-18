@@ -1,7 +1,11 @@
 spring:
   application:
     name: order
-#  data:
-#    mongodb:
-#      uri: mongodb://localhost:27017/order
-#      database: order
+
+aws:
+  region: us-east-1
+  credentials:
+    accessKeyId: xyz
+    secretAccessKey: 123
+  s3:
+    bucket-name: bucket-order

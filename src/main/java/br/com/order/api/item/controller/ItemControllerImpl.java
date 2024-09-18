@@ -23,7 +23,7 @@ public class ItemControllerImpl implements ItemController {
     @Override
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ItemResponse> create(final ItemRequest item) {
-        log.info("Received request to create item with ItemRequest {}", item);
+        log.info("Received request to create item with payload {}", item);
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(service.create(item));
     }
@@ -31,7 +31,7 @@ public class ItemControllerImpl implements ItemController {
     @Override
     @PutMapping(value = "/{itemId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ItemResponse> update(final String itemId, final ItemRequest item) {
-        log.info("Received request to update item with itemId {} and ItemRequest {}",
+        log.info("Received request to update item with itemId {} and payload {}",
             itemId,
             item);
         return ResponseEntity.ok(service.update(itemId, item));

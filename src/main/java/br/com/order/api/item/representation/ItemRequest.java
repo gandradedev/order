@@ -1,11 +1,13 @@
 package br.com.order.api.item.representation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +25,7 @@ public class ItemRequest {
     @Positive
     private Long amountInCents;
 
-//    private MultipartFile image;
+    @JsonIgnore
+    @NotNull
+    private MultipartFile image;
 }
