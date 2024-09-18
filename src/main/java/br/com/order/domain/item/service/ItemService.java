@@ -5,11 +5,9 @@ import br.com.order.api.item.representation.ItemResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.io.IOException;
-
 public interface ItemService {
 
-    ItemResponse create(ItemRequest itemRequest) throws IOException;
+    ItemResponse create(ItemRequest itemRequest);
 
     ItemResponse update(String itemId, ItemRequest item);
 
